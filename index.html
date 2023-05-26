@@ -1,0 +1,27 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balloon Pop</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div>
+        <button id="startButton" onclick="startGame()">Start Game</button>
+    </div>
+    <button id="inflateButton" onclick="inflate()" disabled="true">Inflate 
+        <span id="click-count"></span>
+    </button>
+    <div>
+        <span>Balloons Popped</span>
+        <span id="pop-count">0</span>
+        
+    </div>
+    <div id="balloon" class="balloon"></div>
+
+
+    <script src="main.js"></script>
+</body>
+</html>
