@@ -4,45 +4,52 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Balloon Pop</title>
+    <title>Balloon Pop</title> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <header>
+        <div class="container shadow">
+            <img src="balloon-pop-logo.png" alt="balloon-pop-logo">
+        </div>
+    </header>
+    <main class="card container">
+        <form class="d-flex space-between" id="playerForm" onsubmit="setPlayer(event)">
+            <div>
+                <label for="name">Player Name:</label>
+                <input type="text" name="playerName" required>
+            </div>
+            <button type="submit">Ok</button>
+        </form>
 
-    <form id="playerForm" onsubmit="setPlayer(event)">
-        <div>
-            <label for="name">Player Name:</label>
-            <input type="text" name="playerName" required>
-        </div>
-        <button type="submit">Ok</button>
-    </form>
-
-    <section id="game" class="game hidden">
-        <div>
-            <button onclick="changePlayer()">Change Player</button>
-        </div>
-        <div>
-            <button id="startButton" onclick="startGame()">Start Game</button>
-        </div>
-        <button id="inflateButton" onclick="inflate()" disabled="true">Inflate
-            <span id="click-count"></span>
-        </button>
-        <div>
-            <span>Balloons Popped:</span>
-            <span id="pop-count">0</span>
-        </div>
-        <div>
-            <span>High Score:</span>
-            <span id="high-pop-count">0</span>
-        </div>
-        <div>
-            <span>Time Remaining:</span>
-            <span id="countdown">0</span>
-        </div>
-        <div id="balloon" class="balloon"></div>
-    </section>
-
+        <section id="game" class="game hidden">
+            <div>
+                <button onclick="changePlayer()">Change Player</button>
+            </div>
+            <div>
+                <button id="startButton" onclick="startGame()">Start Game</button>
+            </div>
+            <button id="inflateButton" onclick="inflate()" disabled="true">Inflate
+                <span id="click-count"></span>
+            </button>
+            <div>
+                <span>Balloons Popped:</span>
+                <span id="pop-count">0</span>
+            </div>
+            <div>
+                <span>High Score:</span>
+                <span id="high-pop-count">0</span>
+            </div>
+            <div>
+                <span>Time Remaining:</span>
+                <span id="countdown">0</span>
+            </div>
+            <div id="balloon" class="balloon"></div>
+    </main>
     <script src="main.js"></script>
 </body>
 

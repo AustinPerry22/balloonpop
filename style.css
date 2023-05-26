@@ -1,5 +1,35 @@
+:root{
+    --primary: #f290fa;
+    --bg: #f0eded;
+    --shadow: 2px 0 8px #0000004d;
+    --corners: 6px;
+    --text-color: #222121; 
+    --white: #ffffffd5; 
+    
+}
+
 body{
-    background-color: wheat;
+    background-color: var(--bg);
+    font-family: 'Permanent Marker', cursive;
+    font-size: 16pt;
+    color: var(--text-color)
+}
+
+header{
+    margin: 2em 0;
+}
+
+img{
+    max-width: 100%;
+}
+
+button{
+    background-color: var(--primary);
+    color: var(--white);
+    border: 1px solid rgb(54, 51, 51);
+    border-radius: var(--corners);
+    box-shadow: var(--shadow);
+    text-transform: uppercase;
 }
 
 .balloon{
@@ -9,6 +39,31 @@ body{
     border-radius: 50%;
 }
 
+.container{
+    width: 50%;
+    margin: auto;
+}
+
+.shadow{
+    filter: drop-shadow(var(--shadow));
+}
+
+.card{
+    background-color: var(--white);
+    padding: 1em;
+    box-shadow: var(--shadow);
+    border-radius: var(--corners);
+
+}
+
+.d-flex{
+    display: flex;
+}
+
+.d-flex.space-between{
+    justify-content: space-between;
+}
+
 .hidden{
-    display: none;
+    display: none !important;
 }
