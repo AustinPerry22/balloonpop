@@ -1,6 +1,7 @@
 let startButton = document.getElementById("startButton")
 let inflateButton = document.getElementById("inflateButton")
 
+//DATA
 let clickCount = 0
 let height = 120
 let width = 100
@@ -9,6 +10,7 @@ let maxSize = 300
 let popCount = 0
 let gameLength = 5000
 let clockId = 0
+let timeRemaining = 0
 
 function startGame(){
 
@@ -19,13 +21,17 @@ function startGame(){
 }
 
 function startClock(){
-    clockId = setInterval(drawClock, 10)
+    timeRemaining = gameLength
+    drawClock()
+    clockId = setInterval(drawClock, 1000)
 }
 function stopClock(){
     clearInterval(clockId)
 }
 function drawClock(){
-    
+    let countdownElem = document.getElementById("countdown")
+    countdownElem.innerText = (timeRemaining/1000).toString()
+    timeRemaining -= 1000
 }
 
 function inflate(){
