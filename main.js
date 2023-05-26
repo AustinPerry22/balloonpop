@@ -15,26 +15,35 @@ function startGame(){
         inflateButton.setAttribute("disabled", "true")
         startButton.removeAttribute("disabled")
         
+        clickCount = 0
+        height = 120
+        width = 100
+        draw()
     }, 3000)    
 }
 
 function inflate(){
     clickCount++
-    let balloonElement = document.getElementById("balloon")
     height += inflationRate
     width += inflationRate
+
     if(height >= maxSize){
         console.log("pop balloon")
         popCount++
         height = 0
         width = 0
-        document.getElementById("pop-count").innerText = popCount
     }
-    balloonElement.style.height = height 
-    balloonElement.style.width = width 
-
-
-    let clickCOuntElem = document.getElementById("click-count")
-    clickCOuntElem.innerText = clickCount 
+    draw()
 }
 
+function draw(){
+    let balloonElement = document.getElementById("balloon")
+    let clickCOuntElem = document.getElementById("click-count")
+    let popCountElem = document.getElementById("pop-count")
+    
+    balloonElement.style.height = height 
+    balloonElement.style.width = width 
+    
+    clickCOuntElem.innerText = clickCount 
+    popCountElem.innerText = popCount
+}
