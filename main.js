@@ -1,25 +1,31 @@
+let startButton = document.getElementById("startButton")
+let inflateButton = document.getElementById("inflateButton")
+
 let clickCount = 0
 let height = 120
 let width = 100
 let inflationRate = 20
 let maxSize = 300
 let popCount = 0
-let startButton = document.getElementById("startButton")
-let inflateButton = document.getElementById("inflateButton")
+let gameLength = 5000
+let clockId = 0
 
 function startGame(){
 
     startButton.setAttribute("disabled", "true")
     inflateButton.removeAttribute("disabled")
-    setTimeout(()=>{
-        inflateButton.setAttribute("disabled", "true")
-        startButton.removeAttribute("disabled")
-        
-        clickCount = 0
-        height = 120
-        width = 100
-        draw()
-    }, 3000)    
+    startClock()
+    setTimeout(stopGame, gameLength)    
+}
+
+function startClock(){
+    clockId = setInterval(drawClock, 10)
+}
+function stopClock(){
+    clearInterval(clockId)
+}
+function drawClock(){
+    
 }
 
 function inflate(){
@@ -46,4 +52,15 @@ function draw(){
     
     clickCOuntElem.innerText = clickCount 
     popCountElem.innerText = popCount
+}
+
+function stopGame(){
+    inflateButton.setAttribute("disabled", "true")
+    startButton.removeAttribute("disabled")
+        
+    clickCount = 0
+    height = 120
+    width = 100
+    stopClock()
+    draw()
 }
