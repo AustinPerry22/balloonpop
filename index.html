@@ -20,7 +20,7 @@
     </header>
 
     <main class="card container bg-light">
-        <form class="d-flex space-between hidden" id="playerForm" onsubmit="setPlayer(event)">
+        <form class="d-flex space-between" id="playerForm" onsubmit="setPlayer(event)">
             <div>
                 <label for="name">
                     <i class="lni lni-user"></i>
@@ -31,8 +31,8 @@
             <button type="submit">Ok</button>
         </form>
 
-        <!-- TODO replace hidden class -->
-        <section id="game" class="game ">
+
+        <section id="game" class="game hidden">
             <div class="d-flex space-between card bg-dark text-light">
                 <div>
                     <i class="lni lni-user"></i>
@@ -44,12 +44,11 @@
                 </div>
             </div>
 
-            <div id="main-controls" class="d-flex space-around mt-2 hidden">
+            <div id="main-controls" class="d-flex space-around mt-2">
                 <button class="btn-dark" onclick="changePlayer()">Change Player</button>
                 <button id="startButton" onclick="startGame()">Start Game</button>
             </div>
-            <!-- TODO replace hidden class -->
-            <div id="game-controls">
+            <div id="game-controls" class="hidden">
                 <div>
                     <span>Balloons Popped:</span>
                     <span id="pop-count">0</span>
@@ -68,10 +67,16 @@
 
                     </div>
                     <div id="balloon" class="balloon"></div>
+                    <audio id="pop-sound" src="burst.wav"></audio>
                 </div>
 
             </div>
     </main>
+
+    <div id="scoreboard" class="card bg-light mt-2 container">
+        <h3 class="text-center">Scoreboard</h3>
+        <div id="players"></div>
+    </div>
     <script src="main.js"></script>
 </body>
 

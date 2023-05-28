@@ -8,7 +8,7 @@ let inflationRate = 20
 let maxSize = 300
 let highestPopCount = 0
 let currentPopCount = 0
-let gameLength = 5000
+let gameLength = 10000
 let clockId = 0
 let timeRemaining = 0
 let currentPlayer = {}
@@ -18,6 +18,7 @@ let possibleColors = ["rainbow", "alternate-color", "alternate-color2"]
 function startGame() {
     document.getElementById("game-controls").classList.remove("hidden")
     document.getElementById("main-controls").classList.add("hidden")
+    document.getElementById("scoreboard").classList.add("hidden")
     startClock()
     setTimeout(stopGame, gameLength)
 }
@@ -46,13 +47,14 @@ function inflate() {
     draw()
 }
 
-function checkBalloonPop{
+function checkBalloonPop(){
     if (height >= maxSize) {
         console.log("pop balloon")
         let balloonElement = document.getElementById("balloon")
         balloonElement.classList.remove(currentColor)
         getRandomColor()
         balloonElement.classList.add(currentColor)
+        document.getElementById("pop-sound").play()
         currentPopCount++
         height = 0
         width = 0
@@ -84,6 +86,7 @@ function draw() {
 function stopGame() {
     document.getElementById("game-controls").classList.add("hidden")
     document.getElementById("main-controls").classList.remove("hidden")
+    document.getElementById("scoreboard").classList.remove("hidden")
 
     clickCount = 0
     height = 120
@@ -97,6 +100,7 @@ function stopGame() {
 
     stopClock()
     draw()
+    drawScoreboard()
 }
 
 //#endregion
@@ -122,6 +126,7 @@ function setPlayer(event) {
     document.getElementById("game").classList.remove("hidden")
     form.classList.add("hidden")
     draw()
+    drawScoreboard()
 }
 
 function changePlayer() {
@@ -138,4 +143,24 @@ function loadPlayers() {
         players = playerData
     }
 }
+
+function drawScoreboard() {
+    let template = ""
+
+    players.sort((p1, p2) => p2.topScore - p1.topScore)
+    players.forEach(player => {
+        template += `
+        <div class="d-flex space-between">
+            <span>
+                    <i class="lni lni-user"></i>
+                    ${player.name}
+                </span>
+            <span>score: ${player.topScore}</span>
+        </div>`
+    })
+
+    document.getElementById("players").innerHTML = template
+}
+
+drawScoreboard()
 
