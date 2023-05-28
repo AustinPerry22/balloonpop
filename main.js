@@ -60,6 +60,7 @@ function draw(){
     let clickCOuntElem = document.getElementById("click-count")
     let popCountElem = document.getElementById("pop-count")
     let highPopCountElem = document.getElementById("high-pop-count")
+    let playerNameElem = document.getElementById("player-name")
     
     balloonElement.style.height = height 
     balloonElement.style.width = width 
@@ -67,6 +68,8 @@ function draw(){
     clickCOuntElem.innerText = clickCount 
     popCountElem.innerText = currentPopCount
     highPopCountElem.innerText = currentPlayer.topScore.toString()
+
+    playerNameElem.innerText = currentPlayer.name
 }
 
 function stopGame(){

@@ -1,10 +1,13 @@
 :root{
     --primary: #f290fa;
+    --primary-dark:#c94ed1; 
     --bg: #f0eded;
     --shadow: 2px 0 8px #0000004d;
     --corners: 6px;
     --text-color: #222121; 
     --white: #ffffffd5; 
+    --dark: #3f3f3f;
+    --dark-lighten: #6d6d6d;
     
 }
 
@@ -23,20 +26,42 @@ img{
     max-width: 100%;
 }
 
+form{
+    margin: 0;
+}
+
+input{
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid var(--text-color);
+    outline: none;
+    font-size: 16pt;
+}
+
 button{
     background-color: var(--primary);
     color: var(--white);
-    border: 1px solid rgb(54, 51, 51);
+    border: 1px solid var(--primary-dark);
     border-radius: var(--corners);
     box-shadow: var(--shadow);
     text-transform: uppercase;
+    transition: all .2s ease;
+    cursor: pointer;
+    padding: 1em;
 }
+
+button:hover{
+    background-color: var(--primary-dark);
+}
+
+
 
 .balloon{
     height: 120px;
     width: 100px;
     background-color: blue;
     border-radius: 50%;
+    transition: all .2s ease;
 }
 
 .container{
@@ -48,8 +73,29 @@ button{
     filter: drop-shadow(var(--shadow));
 }
 
-.card{
+.bg-dark{
+    background-color: var(--dark);
+}
+
+.btn-dark{
+    background-color: var(--dark-lighten);
+    border-color: var(--dark);
+}
+
+.btn-dark:hover{
+    background-color: var(--dark);
+    border-color: var(--dark-lighten);
+}
+
+.bg-light{
     background-color: var(--white);
+}
+
+.text-light{
+    color: var(--white)
+}
+
+.card{
     padding: 1em;
     box-shadow: var(--shadow);
     border-radius: var(--corners);
@@ -58,10 +104,39 @@ button{
 
 .d-flex{
     display: flex;
+    align-items: center;
 }
 
 .d-flex.space-between{
     justify-content: space-between;
+}
+
+.d-flex.space-around{
+    justify-content: space-around;
+}
+
+.mt-1{
+    margin-top: .5em;
+}
+
+.mt-2{
+    margin-top: 1em;
+}
+
+.mt-3{
+    margin-top: 1.5em;
+}
+
+.mb-1{
+    margin-bottom: .5em;
+}
+
+.mb-2{
+    margin-bottom: 1em;
+}
+
+.mb-3{
+    margin-bottom: 1.5em;
 }
 
 .hidden{
