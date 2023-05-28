@@ -1,7 +1,3 @@
-let startButton = document.getElementById("startButton")
-let inflateButton = document.getElementById("inflateButton")
-
-
 // #region GAME LOGIC AND DATA
 
 //DATA
@@ -16,71 +12,84 @@ let gameLength = 5000
 let clockId = 0
 let timeRemaining = 0
 let currentPlayer = {}
+let currentColor = "rainbow"
+let possibleColors = ["rainbow", "alternate-color", "alternate-color2"]
 
-function startGame(){
-
-    startButton.setAttribute("disabled", "true")
-    inflateButton.removeAttribute("disabled")
+function startGame() {
+    document.getElementById("game-controls").classList.remove("hidden")
+    document.getElementById("main-controls").classList.add("hidden")
     startClock()
-    setTimeout(stopGame, gameLength)    
+    setTimeout(stopGame, gameLength)
 }
 
-function startClock(){
+function startClock() {
     timeRemaining = gameLength
     drawClock()
     clockId = setInterval(drawClock, 1000)
 }
 
-function stopClock(){
+function stopClock() {
     clearInterval(clockId)
 }
 
-function drawClock(){
+function drawClock() {
     let countdownElem = document.getElementById("countdown")
-    countdownElem.innerText = (timeRemaining/1000).toString()
+    countdownElem.innerText = (timeRemaining / 1000)
     timeRemaining -= 1000
 }
 
-function inflate(){
+function inflate() {
     clickCount++
     height += inflationRate
-    width += inflationRate
+    width += (inflationRate * .9)
+    checkBalloonPop()
+    draw()
+}
 
-    if(height >= maxSize){
+function checkBalloonPop{
+    if (height >= maxSize) {
         console.log("pop balloon")
+        let balloonElement = document.getElementById("balloon")
+        balloonElement.classList.remove(currentColor)
+        getRandomColor()
+        balloonElement.classList.add(currentColor)
         currentPopCount++
         height = 0
         width = 0
     }
-    draw()
 }
 
-function draw(){
+function getRandomColor() {
+    let i = Math.floor(Math.random() * possibleColors.length)
+    currentColor = possibleColors[i]
+}
+
+function draw() {
     let balloonElement = document.getElementById("balloon")
     let clickCOuntElem = document.getElementById("click-count")
     let popCountElem = document.getElementById("pop-count")
     let highPopCountElem = document.getElementById("high-pop-count")
     let playerNameElem = document.getElementById("player-name")
-    
-    balloonElement.style.height = height 
-    balloonElement.style.width = width 
-    
-    clickCOuntElem.innerText = clickCount 
+
+    balloonElement.style.height = height
+    balloonElement.style.width = width
+
+    clickCOuntElem.innerText = clickCount
     popCountElem.innerText = currentPopCount
-    highPopCountElem.innerText = currentPlayer.topScore.toString()
+    highPopCountElem.innerText = currentPlayer.topScore
 
     playerNameElem.innerText = currentPlayer.name
 }
 
-function stopGame(){
-    inflateButton.setAttribute("disabled", "true")
-    startButton.removeAttribute("disabled")
-        
+function stopGame() {
+    document.getElementById("game-controls").classList.add("hidden")
+    document.getElementById("main-controls").classList.remove("hidden")
+
     clickCount = 0
     height = 120
     width = 100
 
-    if(currentPopCount > currentPlayer.topScore){
+    if (currentPopCount > currentPlayer.topScore) {
         currentPlayer.topScore = currentPopCount
         savePlayers()
     }
@@ -95,7 +104,7 @@ function stopGame(){
 let players = []
 loadPlayers()
 
-function setPlayer(event){
+function setPlayer(event) {
     event.preventDefault()
     let form = event.target
 
@@ -103,8 +112,8 @@ function setPlayer(event){
 
     currentPlayer = players.find(player => player.name == playerName)
 
-    if(!currentPlayer){
-        currentPlayer = {name: playerName, topScore: 0}
+    if (!currentPlayer) {
+        currentPlayer = { name: playerName, topScore: 0 }
         players.push(currentPlayer)
         savePlayers()
     }
@@ -115,17 +124,17 @@ function setPlayer(event){
     draw()
 }
 
-function changePlayer(){
+function changePlayer() {
     document.getElementById("playerForm").classList.remove("hidden")
     document.getElementById("game").classList.add("hidden")
 }
-function savePlayers(){
+function savePlayers() {
     window.localStorage.setItem("players", JSON.stringify(players))
 }
 
-function loadPlayers(){
+function loadPlayers() {
     let playerData = JSON.parse(window.localStorage.getItem("players"))
-    if(playerData){
+    if (playerData) {
         players = playerData
     }
 }

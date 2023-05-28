@@ -20,7 +20,7 @@
     </header>
 
     <main class="card container bg-light">
-        <form class="d-flex space-between" id="playerForm" onsubmit="setPlayer(event)">
+        <form class="d-flex space-between hidden" id="playerForm" onsubmit="setPlayer(event)">
             <div>
                 <label for="name">
                     <i class="lni lni-user"></i>
@@ -34,22 +34,22 @@
         <!-- TODO replace hidden class -->
         <section id="game" class="game ">
             <div class="d-flex space-between card bg-dark text-light">
-                <span id="player-name"></span>
+                <div>
+                    <i class="lni lni-user"></i>
+                    <span id="player-name"></span>
+                </div>
                 <div>
                     <span>High Score:</span>
                     <span id="high-pop-count">0</span>
                 </div>
             </div>
 
-            <div class="d-flex space-around mt-2">
+            <div id="main-controls" class="d-flex space-around mt-2 hidden">
                 <button class="btn-dark" onclick="changePlayer()">Change Player</button>
                 <button id="startButton" onclick="startGame()">Start Game</button>
             </div>
-
-            <div class="hidden">
-                <button id="inflateButton" onclick="inflate()" disabled="true">Inflate
-                    <span id="click-count"></span>
-                </button>
+            <!-- TODO replace hidden class -->
+            <div id="game-controls">
                 <div>
                     <span>Balloons Popped:</span>
                     <span id="pop-count">0</span>
@@ -58,7 +58,18 @@
                     <span>Time Remaining:</span>
                     <span id="countdown">0</span>
                 </div>
-                <div id="balloon" class="balloon"></div>
+
+                <div class="d-flex game-container">
+                    <div class="pump" onclick="inflate()">
+                        <div class="handle"></div>
+                        <div class="pump-box">
+                            <span id="click-count"></span>
+                        </div>
+
+                    </div>
+                    <div id="balloon" class="balloon"></div>
+                </div>
+
             </div>
     </main>
     <script src="main.js"></script>
